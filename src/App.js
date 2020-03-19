@@ -1,25 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import styled from "styled-components";
+
+import SelectBox from "./components/SelectBox";
+import Hero from "./components/Hero";
+import Stats from "./components/Stats";
+
+const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT;
+
+const MainContainer = styled.div`
+  max-width: 65%;
+  margin: 0 auto;
+`;
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <MainContainer>
+      <Hero url={API_ENDPOINT} />
+      <Stats url={API_ENDPOINT} />
+      <SelectBox />
+    </MainContainer>
   );
 }
 
