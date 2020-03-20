@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Select } from "antd";
 import styled from "styled-components";
 
-import { useDataApi } from "../hooks/useDataApi";
+import { useHttp } from "../hooks/useHttp";
 import Stats from "./Stats";
 
 const { Option } = Select;
@@ -11,16 +11,14 @@ const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT;
 const StyledSelect = styled(Select)`
   width: 150px;
   display: inherit;
-  left: 44%;
+  left: 43%;
   margin-top: 1em;
   margin-bottom: 1em;
 `;
 
 const SelectBox = () => {
   const [country, setCountry] = useState("FR");
-  const { data, loading, error } = useDataApi(
-    "https://covid19.mathdro.id/api/countries"
-  );
+  const { data, loading, error } = useHttp(API_ENDPOINT + "/countries");
 
   if (!data || loading) return <p>loading...</p>;
   if (error) return <p>error...</p>;

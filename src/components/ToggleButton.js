@@ -7,7 +7,7 @@ import { useTheme } from "../contexts/themeProvider";
 
 const ButtonContainer = styled.div`
   position: absolute;
-  right: 22em;
+  right: 25em;
   top: 38%;
 `;
 

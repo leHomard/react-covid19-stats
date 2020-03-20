@@ -7,7 +7,7 @@ const StyledCard = styled.div`
   margin: 10px 0;
   min-height: 150px;
   min-width: 250px;
-  width: 280px;
+  width: 20px;
   border-radius: 10px;
   background-color: ${({ theme }) => theme.colors.backgroundLight};
   ${mediaQuery.tablet} {

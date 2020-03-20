@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 import logo from "../assets/coronaMap.png";
-import { useDataApi } from "../hooks/useDataApi";
+import { useHttp } from "../hooks/useHttp";
 import ToggleButton from "./ToggleButton";
 
 const StyledSection = styled.section`
@@ -27,7 +27,7 @@ const StyledInfo = styled.div`
 `;
 
 const Hero = ({ url }) => {
-  const { data, loading, error } = useDataApi(url);
+  const { data, loading, error } = useHttp(url);
   if (!data || loading) return <p>loading...</p>;
   if (error) return <p>error...</p>;
   return (

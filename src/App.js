@@ -7,18 +7,13 @@ import Stats from "./components/Stats";
 
 const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT;
 
-const MainContainer = styled.div`
-  max-width: 65%;
-  margin: 0 auto;
-`;
-
 function App() {
   return (
-    <MainContainer>
+    <div className="container">
       <Hero url={API_ENDPOINT} />
       <Stats url={API_ENDPOINT} />
       <SelectBox />
-    </MainContainer>
+    </div>
   );
 }
 

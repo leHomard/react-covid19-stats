@@ -62,18 +62,8 @@ export const GlobalStyle = createGlobalStyle`
         color: ${props => props.theme.colors.primary};
     }
     .container {
-        max-width: 800px;
+        max-width: 60%;
         margin: 0 auto;
         min-height: 100vh;
-    }
-    .center-text {
-        text-align: center;
-    }
-    .app-logo {
-        pointer-events: none;
-        animation: ${spin} infinite 10s linear;
-        g {
-            fill: ${props => props.theme.colors.primary}
-        }
     }
 `;

@@ -1,35 +1,38 @@
 import React from "react";
 import styled from "styled-components";
+
+import Card from "./Card";
+import { useHttp } from "../hooks/useHttp";
 import { formatNumber } from "../utils";
 
-import CardComponent from "./Card";
-import { useDataApi } from "../hooks/useDataApi";
-
-const CardContainer = styled.div`
+const StatsContainer = styled.div`
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   flex-wrap: wrap;
 `;
 
 const Stats = ({ url }) => {
-  const { data, loading, error } = useDataApi(url);
+  const { data, loading, error } = useHttp(url);
+
   if (!data || loading) return <p>loading...</p>;
   if (error) return <p>error</p>;
+
+  const { confirmed, deaths, recovered } = data;
+  const cases = [
+    { case: "Confirmed", info: "warning", data: confirmed },
+    { case: "Deaths", info: "danger", data: deaths },
+    { case: "Recovered", info: "success", data: recovered }
+  ];
+
   return (
-    <CardContainer>
-      <CardComponent info="warning">
-        <h2>{formatNumber(data.confirmed.value)}</h2>
-        <h4>Confirmed</h4>
-      </CardComponent>
-      <CardComponent info="danger">
-        <h2>{formatNumber(data.deaths.value)}</h2>
-        <h4>Deaths</h4>
-      </CardComponent>
-      <CardComponent info="success">
-        <h2>{formatNumber(data.recovered.value)}</h2>
-        <h4>Recovered</h4>
-      </CardComponent>
-    </CardContainer>
+    <StatsContainer>
+      {cases.map(el => (
+        <Card key={el.case} info={el.info}>
+          <h2>{formatNumber(el.data.value)}</h2>
+          <h4>{el.case}</h4>
+        </Card>
+      ))}
+    </StatsContainer>
   );
 };
 
